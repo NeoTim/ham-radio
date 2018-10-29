@@ -1,0 +1,4782 @@
+\documentclass[a4paper]{article}
+% \usepackage[margin=1.0in]{geometry}
+\usepackage[top=15mm, bottom=10mm, footnotesep=1mm]{geometry}
+\usepackage{booktabs}
+\usepackage{exsheets}
+\usepackage{tasks}
+\usepackage{paralist}
+\usepackage{morse}
+\usepackage{nopageno}
+\usepackage{tikz}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\SetupExSheets[question]{type=exam,name=Q}
+\SetupExSheets{solution/print=true}
+\SetupExSheets[solution]{name=A}
+\SetupExSheets{
+	% counter-format=se.qu,
+	counter-within=section,
+	headings=runin,
+}
+\settasks{
+	counter-format=(tsk[A]),
+	label-width=4ex
+}
+
+%%%
+
+\makeatletter
+\def\@morse@char#1{\expandafter\def\csname @morse@char@#1\endcsname}
+
+\def\tikzmorse@wordsep{++(4, 0)}
+\def\tikzmorse@charsep{++(2, 0)}
+\def\tikzmorse@Dit{ -- ++(1,0) ++(1,0) }
+\def\tikzmorse@Dah{ -- ++(3,0) ++(1,0) }
+
+\@morse@char{A}{\tikzmorse@Dit\tikzmorse@Dah}
+\@morse@char{B}{\tikzmorse@Dah\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dit}
+\@morse@char{C}{\tikzmorse@Dah\tikzmorse@Dit\tikzmorse@Dah\tikzmorse@Dit}
+\@morse@char{D}{\tikzmorse@Dah\tikzmorse@Dit\tikzmorse@Dit}
+\@morse@char{E}{\tikzmorse@Dit}
+\@morse@char{F}{\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dah\tikzmorse@Dit}
+\@morse@char{G}{\tikzmorse@Dah\tikzmorse@Dah\tikzmorse@Dit}
+\@morse@char{H}{\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dit}
+\@morse@char{I}{\tikzmorse@Dit\tikzmorse@Dit}
+\@morse@char{J}{\tikzmorse@Dit\tikzmorse@Dah\tikzmorse@Dah\tikzmorse@Dah}
+\@morse@char{K}{\tikzmorse@Dah\tikzmorse@Dit\tikzmorse@Dah}
+\@morse@char{L}{\tikzmorse@Dit\tikzmorse@Dah\tikzmorse@Dit\tikzmorse@Dit}
+\@morse@char{M}{\tikzmorse@Dah\tikzmorse@Dah}
+\@morse@char{N}{\tikzmorse@Dah\tikzmorse@Dit}
+\@morse@char{O}{\tikzmorse@Dah\tikzmorse@Dah\tikzmorse@Dah}
+\@morse@char{P}{\tikzmorse@Dit\tikzmorse@Dah\tikzmorse@Dah\tikzmorse@Dit}
+\@morse@char{Q}{\tikzmorse@Dah\tikzmorse@Dah\tikzmorse@Dit\tikzmorse@Dah}
+\@morse@char{R}{\tikzmorse@Dit\tikzmorse@Dah\tikzmorse@Dit}
+\@morse@char{S}{\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dit}
+\@morse@char{T}{\tikzmorse@Dah}
+\@morse@char{U}{\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dah}
+\@morse@char{V}{\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dah}
+\@morse@char{W}{\tikzmorse@Dit\tikzmorse@Dah\tikzmorse@Dah}
+\@morse@char{X}{\tikzmorse@Dah\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dah}
+\@morse@char{Y}{\tikzmorse@Dah\tikzmorse@Dit\tikzmorse@Dah\tikzmorse@Dah}
+\@morse@char{Z}{\tikzmorse@Dah\tikzmorse@Dah\tikzmorse@Dit\tikzmorse@Dit}
+\@morse@char{1}{\tikzmorse@Dit\tikzmorse@Dah\tikzmorse@Dah\tikzmorse@Dah\tikzmorse@Dah}
+\@morse@char{2}{\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dah\tikzmorse@Dah\tikzmorse@Dah}
+\@morse@char{3}{\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dah\tikzmorse@Dah}
+\@morse@char{4}{\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dah}
+\@morse@char{5}{\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dit}
+\@morse@char{6}{\tikzmorse@Dah\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dit}
+\@morse@char{7}{\tikzmorse@Dah\tikzmorse@Dah\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dit}
+\@morse@char{8}{\tikzmorse@Dah\tikzmorse@Dah\tikzmorse@Dah\tikzmorse@Dit\tikzmorse@Dit}
+\@morse@char{9}{\tikzmorse@Dah\tikzmorse@Dah\tikzmorse@Dah\tikzmorse@Dah\tikzmorse@Dit}
+\@morse@char{0}{\tikzmorse@Dah\tikzmorse@Dah\tikzmorse@Dah\tikzmorse@Dah\tikzmorse@Dah}
+\@morse@char{-}{\tikzmorse@Dah\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dit\tikzmorse@Dah}
+
+\tikzset{morse/.style={thick,x=2pt}, morse draw/.style={}}
+\newcommand\tikzmorse[2][]{\tikz[morse,#1] \@morse@draw{#2};}
+
+\def\@morse@draw#1{%
+	\edef\@morse@path{\@@morse@draw#1\@empty}
+	\draw [morse draw] (0,0) \@morse@path;
+}
+
+\def\@@morse@draw#1{%
+	\ifx\@empty#1\@empty
+	\else
+	\ifx,#1\@empty
+	\tikzmorse@wordsep
+	\else
+	\csname @morse@char@#1\endcsname
+	\tikzmorse@charsep
+	\fi
+	\expandafter\@@morse@draw
+	\fi
+}
+
+\makeatother
+
+%%%
+
+\begin{document}
+
+\newcommand{\apostrophe}{\XeTeXglyph\XeTeXcharglyph"0027\relax}
+
+\def \spaces {\_\_\_}
+
+\begin{center}
+\fbox{\fbox{\parbox{5.5in}{\centering
+	\apostrophe{}Amateur radio rules \& regulations\apostrophe{} (Section B) questions for ASOC exam, v0.27 (2019-01)\\\vspace{3mm}Please send updates to \url{dhiru.kholia@gmail.com}.\\\vspace{3mm}Source code can be found at \href{https://github.com/kholia/ham-radio}{this URL}.}}}
+\end{center}
+
+\vspace{5mm}
+
+\begin{question}The value of bandwidth shown as 3K50 is \spaces
+	\begin{tasks}(4)
+		\task 3050 Hz
+		\task\label{correct} 3500 Hz
+		\task 3500 KHz
+		\task 3050 KHz
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B. 3.50 KHz = 3500 Hz. See \href{https://fccid.io/Emissions-Designator/3K50L1D}{FCC ID} for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The first character in class of Emission signifies about \spaces
+	\begin{tasks}(1)
+		\task Nature of signal(s) modulating the main carrier
+		\task Type of modulation of the main carrier
+		\task Type of Information to be transmitted
+		\task Details of multiplexing the signal(s)
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B. Mnemonic: (Type of modulation, Type of modulating signal, Type of transmitted information). In F3E, F indicates frequency modulation (FM).
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}In the Morse code, the Test signal contains the characters of \spaces
+	\begin{tasks}(2)
+		\task CQ CQ CQ
+		\task V V V
+		\task RT RT RT
+		\task NON
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (V V V). Mnemonic: Verify Verify Verify.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The range of VHF band is \spaces
+	\begin{tasks}(2)
+		\task 3 to 30 MHz
+		\task 30 to 300 MHz
+		\task 300 to 3000 MHz
+		\task 0.3 to 3 MHz
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+B (30 to 300 MHz)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The time difference between IST and UTC is \spaces
+	\begin{tasks}(4)
+		\task 05.30 Hrs
+		\task 05.00 Hrs
+		\task 05.15 Hrs
+		\task 05.45 Hrs
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+A (05.30 Hrs)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The characters in the RST system stands for \spaces
+	\begin{tasks}(2)
+		\task Readability, Signal and Test
+		\task Readability, Signal strength and Test
+		\task Readability, Signal strength and Tone
+		\task Readability, Signal loss and Tone
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Readability, Signal strength and Tone)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The VHF Frequency range that is authorized to Amateurs is \spaces
+	\begin{tasks}(4)
+		\task 140 - 146 MHz
+		\task 144 - 146 MHz
+		\task 140 - 144 MHz
+		\task 146 - 148 MHz
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (144 - 146 MHz). Pune VHF repeater is at 145.1 MHz. Also known as 2 meter band.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The \apostrophe{}Single Side Band with Suppressed Carrier\apostrophe{} is designated as \spaces
+	\begin{tasks}(4)
+		\task H3E
+		\task R3E
+		\task J3E
+		\task A3E
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (J3E). Mnemonic: H (full) J (suppressed) R (reduced).
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The space between two words in Morse code is \spaces
+	\begin{tasks}(2)
+		\task a dot
+		\task a dash
+		\task a dot and a dash
+		\task five dots
+		\task seven dots
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	E (seven dots / 7 dots). See \href{http://www.giangrandi.ch/electronics/radio/morse.shtml}{this article} for details. Note: These rules are not strict at all (especially when using a straight key) and some hams prefer using longer dashes of 3.5 or 4 dots long instead of 3.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Q Code for \apostrophe{}Are you busy?\apostrophe{} is \spaces
+	\begin{tasks}(4)
+		\task QRM
+		\task QRL
+		\task QSA
+		\task QRN
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B. Aid: RL (Really Loaded)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The distress frequency on Voice (Radio Telephony) is \spaces
+	\begin{tasks}(4)
+		\task 2128 KHz
+		\task 2182 KHz
+		\task 1282 KHz
+		\task 1228 KHz
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (2182 KHz). 500 KHz for CW. See \href{https://en.wikipedia.org/wiki/2182_kHz}{this article} for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The characters that a Safety Signal contains in Morse code are \spaces
+	\begin{tasks}(4)
+		\task TTT
+		\task MAY DAY
+		\task PAN PAN
+		\task SSS
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (TTT). SECURITE in voice.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Phonetic used to represent digit \apostrophe{}8\apostrophe{} is \spaces
+	\begin{tasks}(2)
+		\task Octa Eight
+		\task Okta Eight
+		\task Okto Eight
+		\task Octo Eight
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Okto Eight)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Answer or Advice for the Q-Code \apostrophe{}QTH\apostrophe{} is \spaces
+	\begin{tasks}(2)
+		\task My exact location is \spaces
+		\task What is your exact location?
+		\task My correct time is {\spaces} Hrs
+		\task None of the above
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (My exact location is \spaces)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The written confirmation of a contact, exchanged between Amateurs is \spaces
+	\begin{tasks}(4)
+		\task QSA3
+		\task QSL NR53
+		\task QST?
+		\task QRX 1100
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (QSL). Aid: HAMs send QSL cards to each other.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The abbreviation used for \apostrophe{}All Before\apostrophe{} is \spaces
+	\begin{tasks}(4)
+		\task AA
+		\task AB
+		\task AR
+		\task AS
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (AB)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The calling Amateur\apostrophe{}s call sign in \apostrophe{}VU2DX DE VU2DJ\apostrophe{} is \spaces
+	\begin{tasks}(4)
+		\task VU2DX
+		\task VU2DJ
+		\task DE
+		\task VU2
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (VU2DJ)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The maximum characters that an Amateur Call Sign contains is \spaces
+	\begin{tasks}(4)
+		\task Four
+		\task Five
+		\task Six
+		\task Three
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C. Example: VU2ASH.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The frequency range in 21 MHz band that is authorized to Amateurs is \spaces
+	\begin{tasks}(2)
+		\task 21000 -21350 KHz
+		\task 21000 - 21450 KHz
+		\task 21100 - 21150 KHz
+		\task 21000 - 21400 KHz
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (21000 - 21450 KHz). 15 meter band. See \href{https://en.wikipedia.org/wiki/List_of_amateur_radio_frequency_bands_in_India}{this list} for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Emission that is used to sent Morse code by on/off keying the Unmodulated carrier in CW Transmission is \spaces
+	\begin{tasks}(4)
+		\task A1A
+		\task A2A
+		\task AJA
+		\task ASC
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A. A1A: Morse telegraphy (not modulated). A2A: Modulated CW Morse.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Q-code for \apostrophe{}The signal strength of your signals are Good\apostrophe{} is \spaces
+	\begin{tasks}(4)
+		\task QSA 5
+		\task QSA 4
+		\task QSA 1
+		\task QSA 3
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (QSA 4). Aid: SA: Signal Analysis. Good: 4. Very Good: 5. See \href{https://en.wikipedia.org/wiki/QSA_and_QRK_radio_signal_reports}{this article} for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Amateur Licence will be issued in India by \spaces
+	\begin{tasks}(2)
+		\task Wireless Monitoring Organisation
+		\task Wireless Planning and Coordination Wing
+		\task Telecom Regulatory Authority of India
+		\task Bharat Sanchar Nigam Limited
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Wireless Planning and Coordination Wing). Also known as WPC.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Call sign blocks allotted to India are \spaces
+	\begin{tasks}(4)
+		\task ATA - AWZ
+		\task VTA - VWZ
+		\task 8TA - 8WZ
+		\task A \& B
+		\task A, B \& C
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	E (A, B \& C)
+\end{solution}
+
+\vspace{5mm}
+\begin{question}The UTC stands for \spaces
+	\begin{tasks}(2)
+		\task Universal Time for Coordination
+		\task Universal Coordinated Time
+		\task United States Telecom Community
+		\task Universal Telecommunication Centre
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Universal Coordinated Time)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Emission \apostrophe{}C3F\apostrophe{} stands for \spaces
+	\begin{tasks}(1)
+		\task Double Side band
+		\task Single side band transmission
+		\task Vestigial side band transmission
+		\task Suppressed side band transmission
+		\task Vestigial sideband analog TV emission
+		\task Vestigial sideband digital TV emission
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Vestigial side band Transmission). E (More specific answer, Vestigial sideband analog TV emission).
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The standard shift between transmitting and receiving frequency for Amateur Radio in VHF band is \spaces
+	\begin{tasks}(4)
+		\task 500 KHz
+		\task 600 KHz
+		\task 1000 KHz
+		\task 1200 KHz
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (600 KHz). Pune VHF repeater uses this shift.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The equivalent time in hours of 1730 (IST) in UTC is \spaces
+	\begin{tasks}(4)
+		\task 1200Z
+		\task 1230Z
+		\task 0000Z
+		\task 0530Z
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (1200Z)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Q-code for \apostrophe{}I will call you again at 0400 hrs in the evening\apostrophe{} is \spaces
+	\begin{tasks}(4)
+		\task QRX0400
+		\task QRX1600
+		\task QRX4
+		\task QRX0400
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (QRX1600)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Emission stands for an AM Broadcast with 3 KHz bandwidth is \spaces
+	\begin{tasks}(4)
+		\task A3E3000K
+		\task A3E3K00
+		\task ASE0K300
+		\task A3E0H30
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (A3E3K00). This should be 3K00A3E according to FCC.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The distress frequency 156M800 Hz falls in the range of \spaces
+	\begin{tasks}(4)
+		\task HF band
+		\task UHF band
+		\task Microwave band
+		\task VHF band
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (VHF band). 156.800 MHz is in VHF range (30 to 300 MHz).
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Abbreviation for \apostrophe{}I have nothing for you\apostrophe{} is \spaces
+	\begin{tasks}(4)
+		\task QRU
+		\task NIL
+		\task NFU
+		\task None of the above
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (NIL)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Frequencies those are authorized to use during the 0800 to 2000 Hrs. of the day will be indicated as \spaces
+	\begin{tasks}(4)
+		\task H24
+		\task HN
+		\task HJ
+		\task HX
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (HJ)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Phonetic used for alphabet \apostrophe{}N\apostrophe{} is \spaces
+	\begin{tasks}(4)
+		\task Norvey
+		\task November
+		\task Neighbor
+		\task Night
+	\end{tasks}
+\end{question}
+
+
+\begin{solution}
+	B (November)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The urgent messages in a Morse code are indicated by \spaces
+	\begin{tasks}(4)
+		\task PAN PAN
+		\task XXX
+		\task TTT
+		\task VVV
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (XXX). PAN-PAN in voice.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Emission that indicates a FM Broadcast station is \spaces
+	\begin{tasks}(4)
+		\task F1A
+		\task F3A
+		\task F3E
+		\task F3C
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (F3E). See \href{https://en.wikipedia.org/wiki/Types_of_radio_emissions}{this article} for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+\begin{question}What are the letters required to be sent for a third station to enter between two stations in a Morse code transmission are \spaces
+	\begin{tasks}(4)
+		\task BR
+		\task BK
+		\task BREAK
+		\task BN
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (BK)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The word used in Voice which is equivalent to the word \apostrophe{}DE\apostrophe{} transmitted in a Morse code transmission is \spaces
+	\begin{tasks}(2)
+		\task FROM
+		\task THIS IS
+		\task CALLING
+		\task All of the above
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (THIS IS)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The letters those are required to be sent in the time of Distress in Voice transmission are \spaces
+	\begin{tasks}(4)
+		\task SOS
+		\task MAY DAY
+		\task PAN
+		\task SECURTIE
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (MAY DAY). SOS in Morse code.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Q-code for Test Signal is \spaces
+	\begin{tasks}(4)
+		\task QRK
+		\task QSU
+		\task QSV
+		\task QUM
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (QSV)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}In abbreviation 73, refers to \spaces
+	\begin{tasks}(2)
+		\task thanks
+		\task welcome
+		\task best regards
+		\task none of these
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (best regards)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The frequencies those are designated with \apostrophe{}HX\apostrophe{} can be used \spaces
+	\begin{tasks}(2)
+		\task during the day time
+		\task during the night time
+		\task intermittently
+		\task 24 Hrs. of a day
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (intermittently)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The suffix that is required to be sent along with the call sign for a Mobile Amateur Station is \spaces
+	\begin{tasks}(4)
+		\task MOBILE
+		\task MO
+		\task MX
+		\task None of the above
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (MO)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The ITU stands for \spaces
+	\begin{tasks}(2)
+		\task International Trade Union
+		\task Indian Trade Unions
+		\task Indian Telecommunication Union
+		\task International Telecommunication Union
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (International Telecommunication Union)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}In RST system for Morse code transmission
+	\begin{tasks}(2)
+		\task R and S need to be reported
+		\task R and T need to be reported
+		\task T and S need to be reported
+		\task R, S and T are necessary
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (R, S and T are necessary). See \href{https://en.wikipedia.org/wiki/R-S-T_system}{this article} for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The type of Infringement to be sent upon using incorrect emission is \spaces
+	\begin{tasks}(2)
+		\task Unauthorised Frequency
+		\task Unauthorised Period
+		\task Unauthorised Emission
+		\task Unauthorised Call Sign
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Unauthorized Emission)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The character that represents the Morse code {\Large\morse Q}\hspace{-0.25em}is \spaces
+	\begin{tasks}(4)
+		\task Y
+		\task Z
+		\task C
+		\task Q
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (Q). See \href{https://experiments.withgoogle.com/collection/morse}{this article} and for the details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The number of characters in a 8 wpm, 5 minute passage should be \spaces
+	\begin{tasks}(4)
+		\task 240
+		\task 200
+		\task 160
+		\task 400
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (200). 8 * 5 * 5 = 200.
+\end{solution}
+
+
+
+\vspace{5mm}
+\begin{question}The character for Morse code {\Large\morse ?}\hspace{-0.25em}is \spaces
+	\begin{tasks}(4)
+		\task Full stop
+		\task Comma
+		\task Question mark
+		\task Hyphen
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Question mark). See \href{https://morsecode.scphillips.com/translator.html}{this nifty translator}.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The character for Morse code {\Large\morse F}\hspace{-0.25em}is \spaces
+	\begin{tasks}(4)
+		\task F
+		\task G
+		\task H
+		\task I
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (F)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}In a Morse code transmission what will be the duration of a dot, when the duration of a dash is 30 msec.
+	\begin{tasks}(4)
+		\task 90 msec
+		\task 10 msec
+		\task 1 msec
+		\task 9 msec
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (10 msec)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What will be the speed in wpm, when a message being transmitted contains 60 characters in a minute?
+	\begin{tasks}(4)
+		\task 5 wpm
+		\task 8 wpm
+		\task 10 wpm
+		\task 12 wpm
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (12 wpm). \apostrophe{}PARIS\apostrophe{} is used as the standard word. It has five characters. The space between two letters / characters is three dot (di / dit) units. One dash (dah) is equal to three dots. The letters of a word are separated by a space equal to three dots (one dash), and the words are separated by a space equal to seven dots. According to NIAR study guide, the space between words is equal to five dots.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+
+\begin{question}Which emission mode must be used to obtain assistance during a disaster?
+	\begin{tasks}(2)
+		\task Only SSB
+		\task Only SSB and CW
+		\task Any mode
+		\task Only CW
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Any mode). Emergency allows everything.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What should you do if a CW station sends \apostrophe{}QRS\apostrophe{} when using Morse code?
+	\begin{tasks}(2)
+		\task Send slower
+		\task Change frequency
+		\task Increase your power
+		\task Repeat everything twice
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (Send slower). RS: Rate slow.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What is the recommended way to break into a conversation when using phone?
+	\begin{tasks}(1)
+		\task Say \apostrophe{}QRZ\apostrophe{} several times followed by your call sign
+		\task Say your call sign during a break between transmissions from the other stations
+		\task Say \apostrophe{}Break Break Break\apostrophe{} and wait for a response
+		\task Say \apostrophe{}CQ\apostrophe{} followed by the call sign of either station
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Say your call sign during a break between transmissions). SIARS note: Break is used in emergencies only! In phone you should give your callsign between overs.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Which of the following 20 meter band segments is most often used for most data transmissions?
+	\begin{tasks}(2)
+		\task 14.000 - 14.050 MHz
+		\task 14.070 - 14.100 MHz
+		\task 14.150 - 14.225 MHz
+		\task 14.275 - 14.350 MHz
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (14.070 - 14.100 MHz). According to \apostrophe{}The ARRL General Class License Manual\apostrophe{} and \href{https://www.qsl.net/sv1grb/psk31.htm}{this article}. SIARS note: India does not have specific mode allocations for bands, unlike USA bandplans. This is more of a trivia question, but I wouldn't be surprised if this came as question in the exam. According to IARU bandplan, digimodes start from 14.070 and go up.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What action should be taken if the frequency on which a net normally meets is in use just before the net begins?
+	\begin{tasks}(1)
+		\task Reduce your output power and start the net as usual
+		\task Increase your power output so that net participants will be able to hear you
+		\task Ask the stations if the net may use the frequency, or move the net to a nearby clear frequency if necessary
+		\task Cancel the net for that day
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Ask the stations...)
+\end{solution}
+
+\vspace{5mm}
+
+
+\begin{question}Which of the following is an advantage when using single sideband as compared to other voice modes on the HF amateur bands?
+	\begin{tasks}(1)
+		\task Very high fidelity voice modulation
+		\task Less bandwidth used and high power efficiency
+		\task Ease of tuning on receive
+		\task Less subject to static crashes (atmospherics
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Less bandwidth used and high power efficiency)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What is an azimuthal projection map?
+	\begin{tasks}(1)
+		\task A world map projection centered on the North Pole
+		\task A world map projection centered on a particular location
+		\task A world map that shows the angle at which an amateur satellite crosses the equator
+		\task A world map that shows the number of degrees longitude that an amateur satellite appears to move westward at the equator with each orbit
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (A world map projection centered on a particular location)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The frequency of 40 Meter band in MHz is
+	\begin{tasks}(2)
+		\task 14 - 14.350
+		\task 7 - 7.2
+		\task 21 - 21.450
+		\task 15 - 15.400
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (7 - 7.2 MHz)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Which sideband is commonly used in the VHF and UHF bands?
+	\begin{tasks}(2)
+		\task Upper Side Band
+		\task Lower side band
+		\task Vestigial side band
+		\task Double side band
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (Upper Side Band). E.g. SSB with Upper Sideband (USB) can be used in 2m band. See \href{https://hamradioschool.com/single-sideband-2-meters-vhf-mode/}{this article} for reference.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}When are you prohibited from helping a station in distress?
+	\begin{tasks}(1)
+		\task When that station is not transmitting on amateur frequencies
+		\task When the station in distress offers no call sign
+		\task You are never prohibited from helping any station in distress
+		\task When the station is not another amateur station
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (You are never prohibited from helping any station in distress). According to \apostrophe{}The ARRL General Class License Manual\apostrophe{}.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What is a practical way to avoid harmful interference when calling CQ using Morse code or CW?
+	\begin{tasks}(1)
+		\task Send the letter \apostrophe{}V\apostrophe{} 12 times and then listen for a response
+		\task Keep your CQ to less than 2 minutes in length to avoid interference with contacts already in progress
+		\task Send \apostrophe{}QRL?\apostrophe{} followed by your call sign and listen for a response
+		\task Call CQ at low power first; if there is no indication of interference then increase power as necessary
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Send QRL...). This questions comes from the FCC / ARRL question bank. When using voice, ask if the frequency is in use, followed by your call sign.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+
+
+
+\begin{question}What does it mean when a CW operator sends \apostrophe{}KN\apostrophe{} at the end of a transmission?
+	\begin{tasks}(1)
+		\task Listening for novice stations
+		\task Operating full break-in
+		\task Listening only for a specific station or stations
+		\task Closing station now
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Listening only for a specific station or stations). KN: Known.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Who is accountable if a repeater station inadvertently retransmits communications that violate WPC rules?
+	\begin{tasks}(2)
+		\task The repeater trustee
+		\task The repeater control operator
+		\task The transmitting station
+		\task All of these answers are correct
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (The transmitting station)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Which of the following statements is true of the single sideband (SSB) voice mode?
+	\begin{tasks}(1)
+		\task Only one sideband and the carrier are transmitted; the other sideband is suppressed
+		\task Only one sideband is transmitted; the other sideband and carrier are suppressed
+		\task SSB voice transmissions have higher average power than any other mode
+		\task SSB is the only mode that is authorized on the 160, 75 and 40 meter amateur bands
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Only one sideband is transmitted; the other sideband and carrier are suppressed)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Which layer of ionosphere disappears during night time?
+	\begin{tasks}(2)
+		\task F
+		\task E
+		\task D
+		\task C
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (D -> disappear). Layers: D, E, F1, F2. D layer reflects VLF and LF waves. E layer reflects some HF waves in daytime. F2 layer reflects HF waves.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}When sending CW, what does a \apostrophe{}C\apostrophe{} mean when added to the RST report?
+	\begin{tasks}(1)
+		\task Chirpy or unstable signal
+		\task Report was read from S meter reading rather than estimated
+		\task 100 percent copy
+		\task Key clicks
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (chirpy signal). Similarly, \apostrophe{}K\apostrophe{} indicates key clicks.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}How do you call another station on a repeater if you know the station's call sign?
+	\begin{tasks}(1)
+		\task Say \apostrophe{}break, break\apostrophe{} then say the station's call sign
+		\task Say the station\apostrophe{}s call sign then identify your own station
+		\task Say \apostrophe{}CQ\apostrophe{} three times then the other station's call sign
+		\task Wait for the station to call \apostrophe{}CQ\apostrophe{} then answer it
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Say the station\apostrophe{}s call sign then identify your own station)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What does the Q signal \apostrophe{}QSL\apostrophe{} mean when operating CW?
+	\begin{tasks}(2)
+		\task We have already confirmed by card
+		\task I acknowledge receipt
+		\task We have worked before
+		\task Send slower
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (I acknowledge receipt)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What is the first thing you should do if you are communicating with another amateur station and hear a station in distress break in?
+	\begin{tasks}(2)
+		\task Continue your communication because you were on frequency first
+		\task Acknowledge the station in distress and determine what assistance may be needed
+		\task Change to a different frequency
+		\task Immediately cease all transmissions
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Acknowledge the station in distress and determine what assistance may be needed)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}How do you indicate you are looking for any station with which to make contact?
+	\begin{tasks}(2)
+		\task CQ followed by your call sign
+		\task RST followed by your call sign
+		\task QST followed by your call sign
+		\task SK followed by your call sign
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (CQ followed by your call sign). CQ DX indicates that caller is looking for any station outside their own country.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What should you transmit when responding to a call of CQ?
+	\begin{tasks}(1)
+		\task Your own CQ followed by the other station\apostrophe{}s call sign
+		\task Your call sign followed by the other station\apostrophe{}s call sign
+		\task The other station\apostrophe{}s call sign followed by your call sign
+		\task A signal report followed by your call sign
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (The other station\apostrophe{}s call sign followed by your call sign)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What must an amateur do when making a transmission to test equipment or antennas?
+	\begin{tasks}(2)
+		\task Properly identify the station
+		\task Make test transmissions only after 10:00 PM local time
+		\task Notify the WPC of the test transmission
+		\task State the purpose of the test during the test procedure
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (Properly identify the station). Note: Station identification is required at least every ten minutes during the test and at the end of the test.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What is the meaning of the procedural signal \apostrophe{}CQ\apostrophe{}?
+	\begin{tasks}(2)
+		\task Call on the quarter hour
+		\task New antenna is being tested (no station should answer
+		\task Only the called station should transmit
+		\task Calling any station
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (Calling any station)
+\end{solution}
+
+\vspace{5mm}
+
+
+\begin{question}What brief statement is often used in place of \apostrophe{}CQ\apostrophe{} to indicate that you are listening for calls on a repeater?
+	\begin{tasks}(2)
+		\task Say \apostrophe{}Hello test\apostrophe{} followed by your call sign
+		\task Say your call sign
+		\task Say the repeater call sign followed by your call sign
+		\task Say the letters \apostrophe{}QSY\apostrophe{} followed by your call sign
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Say your call sign)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Why should you use the International Telecommunication Union (ITU) phonetic alphabet when identifying your station?
+	\begin{tasks}(1)
+		\task The words are internationally recognized substitutes for letters
+		\task There is no advantage
+		\task The words have been chosen to represent amateur radio terms
+		\task It preserves traditions begun in the early days of amateur radio
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (The words are internationally recognized substitutes for letters)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Who is in charge of the repeater frequency band plan in your local area?
+	\begin{tasks}(1)
+		\task The local WPC monitoring office
+		\task Only WPC HO New Delhi
+		\task The recognized frequency coordination body
+		\task Amateur Radio society of India
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Only WPC HO New Delhi)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What is the main purpose of repeater coordination?
+	\begin{tasks}(1)
+		\task To reduce interference and promote proper use of spectrum
+		\task To coordinate as many repeaters as possible in a small area
+		\task To coordinate all possible frequencies available for repeater use
+		\task To promote and encourage use of simplex frequencies
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (To reduce interference and promote proper use of spectrum). According to \apostrophe{}Amateur Radio License Study Notes\apostrophe{} and various internet resources.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Which of these statements is true about legal power levels on the amateur bands?
+	\begin{tasks}(1)
+		\task Always use the maximum power allowed to ensure that you complete the contact
+		\task An amateur may use no more than 200 Watts PEP to make an amateur contact
+		\task An amateur may use up to 1500 Watts PEP on any amateur frequency
+		\task An amateur must use the minimum transmitter power necessary to carry out the desired communication
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (use minimum power)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What is the proper way to break into a conversation between two stations that are using the frequency?
+	\begin{tasks}(1)
+		\task Say your call sign between their transmissions
+		\task Wait for them to finish and then call CQ
+		\task Say \apostrophe{}Break-break\apostrophe{} between their transmissions
+		\task Call one of the operators on the telephone to interrupt the conversation
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Say \apostrophe{}Break-break\apostrophe{})
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Amateurs are forbidden to transmit about
+	\begin{tasks}(2)
+		\task Equipment
+		\task weather
+		\task Antennas
+		\task Third party messages
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (Third party messages)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Standard time and frequency is transmitted on
+	\begin{tasks}(2)
+		\task 7050 KHz
+		\task 14050 KHz
+		\task 21050 KHz
+		\task 10000 KHz
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (10000 KHz)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What is considered to be proper repeater operating practice?
+	\begin{tasks}(1)
+		\task Monitor before transmitting and keep transmissions short
+		\task Identify legally
+		\task Use the minimum amount of transmitter power necessary
+		\task All of these answers are correct
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (All of the above). See \href{http://www.smrs.us/classes/he-tech-study.pdf}{this study guide} for details. SIARS note: There are no references regarding this in the syllabus. However, for the sake of learning, the answer is \apostrophe{}D\apostrophe{}.
+
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What rule applies if two amateur stations want to use the same frequency?
+	\begin{tasks}(1)
+		\task The station operator with a Restricted Grade license must yield the frequency to an General Grade licensee
+		\task The station operator with a lower power output must yield the frequency to the station with a higher power output
+		\task No frequency will be assigned for the exclusive use of any station and neither has priority
+		\task Station operators in ITU Regions 1 and 3 must yield the frequency to stations in ITU Region 2
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (No frequency will be assigned for the exclusive use of any station and neither has priority)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What should you do if you hear a newly licensed operator that is having trouble with their station?
+	\begin{tasks}(1)
+		\task Tell them to get off the air until they learn how operate properly
+		\task Report them to the WPC HO
+		\task Contact them and offer to help with the problem
+		\task Move to another frequency
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Contact them and offer to help with the problem)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}A3E indicates
+	\begin{tasks}(2)
+		\task SSB
+		\task AM-DSB voice
+		\task FM Voice
+		\task FSK
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (AM-DSB voice)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Line of sight propagation is the mode of communication in
+	\begin{tasks}(2)
+		\task LF
+		\task HF
+		\task MF
+		\task VHF
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (VHF)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The wavelength of 300 MHz is in Meters is
+	\begin{tasks}(2)
+		\task 1
+		\task .1
+		\task 1.1
+		\task 0.01
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (1 meters). 2 meter band is 144 - 146 MHz (absolute 2 meters implies 150 MHz).
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Squelch control is used to eliminate
+	\begin{tasks}(2)
+		\task static interference
+		\task electrical disturbance
+		\task receiver noise
+		\task unwanted carrier
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (receiver noise)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}4th harmonic of 2.5 MHz is
+	\begin{tasks}(2)
+		\task 10 MHz
+		\task 15 MHz
+		\task 8 MHz
+		\task 7.5 MHz
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (4 * 2.5)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The UHF range is
+	\begin{tasks}(2)
+		\task 30 to 300 KHz
+		\task 300 to 3000 KHz
+		\task 3 to 30 GHz
+		\task 300 to 3000 MHz
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (300 to 3000 MHz)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Indian amateurs can communicate with other amateurs in
+	\begin{tasks}(1)
+		\task All countries
+		\task Countries permitted by ITU
+		\task Countries permitted by Indian Government
+		\task Countries permitted by Indian Amateur society
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (All countries - currently). No country has explicitly banned HAM communications with them as of October, 2018. SIARS note: Technically, the answer is \apostrophe{}A\apostrophe{} (all countries). Radio communications may be exchanged with other stations similarly authorized. The amateur stations are forbidden to communicate with amateur stations of countries whose administrations have notified the International Telecommunication Union of their objection to such radio communications. There are no countries on the list. Although North Korea and Yemen do not have amateur radio licensing, they have been known to allow DXepditions (foreign operators) to operate from there in the past.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Restricted grade amateurs can communicate on 7 MHz in
+	\begin{tasks}(2)
+		\task A1
+		\task A3
+		\task F3
+		\task A3E
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (A3E)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Lady amateurs are known as
+	\begin{tasks}(2)
+		\task XL
+		\task XYL
+		\task YL
+		\task LY
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (YL: Young Lady)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Minimum age to become an amateur is
+	\begin{tasks}(2)
+		\task 18 years
+		\task 14 years
+		\task 12 years
+		\task 16 years
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (12 years). Any citizen of INDIA who is above 12 years of age can become a ham by qualifying in the Amateurs station operators\apostrophe{} examination (ASO) and obtaining a valid Amateur wireless telegraph station license. See \href{http://arsi.info/faq/}{this FAQ} for more information.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}All timing in the Log book should be in
+	\begin{tasks}(2)
+		\task IST
+		\task UTC
+		\task GMT
+		\task Local time
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (IST)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Amateurs should preserve their log for a period of
+	\begin{tasks}(2)
+		\task 6 months
+		\task 1 year
+		\task 2 years
+		\task 9 months from the date of the last entry
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (1 year)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Q code to indicate time is
+	\begin{tasks}(2)
+		\task QRG
+		\task QRX
+		\task QTR
+		\task QSA
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (QTR). See \href{http://www.giangrandi.ch/electronics/radio/qcode.shtml}{Q-code list} for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Test signal shall not be continued more than
+	\begin{tasks}(2)
+		\task 30 seconds
+		\task 1 minute
+		\task 2 minutes
+		\task 3 minutes
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (30 seconds)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}In India the standard time signal is broadcast by
+	\begin{tasks}(2)
+		\task ISRO
+		\task WPC
+		\task OCS
+		\task NPL
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (NPL)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}PANPAN transmitted thrice indicates
+	\begin{tasks}(2)
+		\task Distress
+		\task Emergency
+		\task Urgency
+		\task Distress and emergency
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Urgency)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The broadcast of music is allowed in amateur service
+	\begin{tasks}(2)
+		\task on request
+		\task when channel is free
+		\task never
+		\task only for testing
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (never)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The abbreviation VA means
+	\begin{tasks}(2)
+		\task End of transmission
+		\task End of message
+		\task End of working
+		\task End of schedule
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (End of working)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}SWL are permitted to transmit in the frequency band of
+	\begin{tasks}(2)
+		\task 7-7.1 MHz
+		\task 3.89-3.9 MHz
+		\task 144-146 MHz
+		\task None of these
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (None of these)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The amateur license is renewed by
+	\begin{tasks}(2)
+		\task P \& T
+		\task Ministry of communication
+		\task Monitoring stations
+		\task None of these
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Ministry of communication)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}FM Broadcasting station emission is
+	\begin{tasks}(2)
+		\task A1E
+		\task A3E
+		\task J3E
+		\task F3E
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (F3E)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The code to indicate the location of a station is
+	\begin{tasks}(2)
+		\task QTL
+		\task QTH
+		\task QTN
+		\task None of these
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (QTH)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Amateur station on a ship can contact another amateur on land on a frequency authorized to
+	\begin{tasks}(2)
+		\task the ship
+		\task amateur stations
+		\task by the ministry of communication
+		\task ships calling frequency
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (amateur stations)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}SOS transmitted three times indicates
+	\begin{tasks}(2)
+		\task urgency
+		\task distress
+		\task safety
+		\task none of these
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (distress)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}All timings in logbook should be in
+	\begin{tasks}(2)
+		\task IST
+		\task GMT
+		\task UTC
+		\task Local time
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (IST)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Under Indian Wireless Telegraph rules, 1973, the minimum age to work on a radio transmitting apparatus is \spaces years
+	\begin{tasks}(2)
+		\task 12
+		\task 15
+		\task 18
+		\task 21
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (12 years)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}An amateur is forbidden to transmit
+	\begin{tasks}(1)
+		\task communications of business
+		\task transmissions of entertainment value or music
+		\task advertisements
+		\task all the above
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (all the above)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Log containing chronological record of all transmissions should be preserved for
+	\begin{tasks}(2)
+		\task 1 day
+		\task 1 month
+		\task 6 months
+		\task 12 months
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (12 months)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Log containing chronological record of all transmissions should contain
+	\begin{tasks}(1)
+		\task Date and time of all transmissions
+		\task Call signs intercepted
+		\task Summary of communications
+		\task All of the above
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (All of the above)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Which of the following should be given top priority?
+	\begin{tasks}(2)
+		\task Safety signal
+		\task Routine communication signal
+		\task Distress signal
+		\task Urgency signal
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Distress signal)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The following is not an amateur call sign of India
+	\begin{tasks}(2)
+		\task VU2XYZ
+		\task VU3ABC
+		\task VU44AB
+		\task VU3RS
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (VU44AB)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The standard time \& frequency signal in India is
+	\begin{tasks}(2)
+		\task 5 MHz
+		\task 10 MHz
+		\task 20 MHz
+		\task 100 MHz
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (10 MHz). 10000 KHz.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The standard time \& frequency signal in India call sign is
+	\begin{tasks}(2)
+		\task VU2
+		\task VU3
+		\task ATA
+		\task ATU
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (ATA)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The abbreviation for end of message in Morse code is
+	\begin{tasks}(2)
+		\task AA
+		\task AR
+		\task ED
+		\task EN
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (AR). See \href{https://morsecode.scphillips.com/morse.html}{International Morse Code} for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}QTR stands for?
+	\begin{tasks}(1)
+		\task What is the correct time?
+		\task What is your position in latitude and longitude?
+		\task Thank you for sending
+		\task What is Time and Hour?
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (What is the correct time?). See \href{http://www.giangrandi.ch/electronics/radio/qcode.shtml}{Q-code list} for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The standard emission designation consists of
+	\begin{tasks}(2)
+		\task 8 letters/numerals
+		\task 3 letters/numerals
+		\task 6 letters/numerals
+		\task 2 letters/numerals
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (3 letters/numerals). E.g. F3E (FM voice). See \href{http://www.wpc.dot.gov.in/Static/emission_help.html}{classification of emissions and necessary bandwidths} for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Metric waves means
+	\begin{tasks}(2)
+		\task 3-30 MHz
+		\task 3-30 KHz
+		\task 30-300 KHz
+		\task 30-300 MHz
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (30-300 MHz). Aid: Metric = VHF.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The standard bandwidth designation consists of
+	\begin{tasks}(2)
+		\task 5 letters/numerals
+		\task 3 letters/numerals
+		\task 4 letters/numerals
+		\task 2 letters/numerals
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (4 letters/numerals). E.g. 3K50 (3.5 KHz). See \href{http://www.wpc.dot.gov.in/Static/emission_help.html}{classification of emissions and necessary bandwidths} for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Which should be used as a suffix in call sign for mobile amateur stations
+	\begin{tasks}(2)
+		\task ME
+		\task MB
+		\task MO
+		\task ML
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (MO)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Q code for \apostrophe{}What is the correct time\apostrophe{} is
+	\begin{tasks}(2)
+		\task QCT
+		\task QTM
+		\task QRT
+		\task QTR
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (QTR)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Q code for \apostrophe{}Are my signals fading?\apostrophe{} is
+	\begin{tasks}(2)
+		\task QSB
+		\task QAM
+		\task QSI
+		\task QSF
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (QSB).
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Q code QRQ represents
+	\begin{tasks}(2)
+		\task Shall I stop slowing?
+		\task Shall I increase power?
+		\task Shall I send faster?
+		\task Shall I decrease power?
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C ( Shall I send faster?). RQ: Rate Quicker.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Phonetic alphabet for \apostrophe{}L\apostrophe{} is
+	\begin{tasks}(2)
+		\task Lilly
+		\task Lima
+		\task Limca
+		\task Lisa
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Lima)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Phonetic for \apostrophe{}3\apostrophe{} is
+	\begin{tasks}(2)
+		\task Terra Three
+		\task Tele Three
+		\task Tango Three
+		\task Tango Tree
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (Terra Three\textsl{})
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The expanded form for \apostrophe{}TU\apostrophe{} in Morse code is
+	\begin{tasks}(2)
+		\task Thank u
+		\task Thank you
+		\task Thank everyone
+		\task None of the above
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Thank you)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The expanded form for \apostrophe{}CQ\apostrophe{} in Morse code is
+	\begin{tasks}(2)
+		\task Calling you
+		\task Calling any station
+		\task Calling Quebec
+		\task Calling none
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Calling any station)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The abbreviation for \apostrophe{}stand by\apostrophe{} in Morse code is
+	\begin{tasks}(2)
+		\task SY
+		\task AS
+		\task SB
+		\task AD
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (AS). In CW, AS is the prosign for \apostrophe{}stand by\apostrophe{}.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Q code for \apostrophe{}What is the name of your station?\apostrophe{} is
+	\begin{tasks}(2)
+		\task QNS
+		\task QRA
+		\task QYS
+		\task QNA
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (QRA)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Q code for \apostrophe{}Are you ready?\apostrophe{} is
+	\begin{tasks}(2)
+		\task QRY
+		\task QRV
+		\task QAR
+		\task QRE
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (QRV)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The expanded from of SOS is
+	\begin{tasks}(2)
+		\task Save our selves
+		\task Save one self
+		\task Save one souls
+		\task Save our souls
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (Save our souls)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The distress signal in radio telephony is
+	\begin{tasks}(2)
+		\task Help, Help, Help
+		\task May day, May day, May day
+		\task Save, Save, Save
+		\task Save our souls
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (May day, May day, May day)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The phonetic for alphabet \apostrophe{}Y\apostrophe{} is
+	\begin{tasks}(2)
+		\task Yardly
+		\task Yankee
+		\task Yan
+		\task Yarn
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Yankee)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The phonetic for \apostrophe{}9\apostrophe{} is
+	\begin{tasks}(2)
+		\task New Nine
+		\task Nove Nine
+		\task Novel Nine
+		\task Nine
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Nove Nine)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Which one of this is not a standard frequency signal
+	\begin{tasks}(2)
+		\task 15 MHz
+		\task 10 MHz
+		\task 5 MHz
+		\task 1 MHz
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (1 MHz). Standard frequency signal: 5, 10, 15 MHz.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The renewal fee for General Grade Amateur license under new rules is
+	\begin{tasks}(2)
+		\task Rs. 1000
+		\task Rs. 2000
+		\task Rs. 100
+		\task Rs. 200
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (INR 2000 for 20 lifetime). SIARS note: Options both A and B can be the answer, depending upon whether the renewal is for 20 years or life time respectively. Trivia. Go for 2000. These kind of questions are rare.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The fee for mobile endorsement under new rules is
+	\begin{tasks}(2)
+		\task Rs. 100
+		\task Rs. 200
+		\task Rs. 1000
+		\task Rs. 2000
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (200 INR)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The maximum DC power permitted under new rules for Restricted grade amateurs under 144-146 MHz band is
+	\begin{tasks}(2)
+		\task 10 watts
+		\task 25 watts
+		\task 50 watts
+		\task 100 watts
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (10 watts)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The maximum DC power permitted under new rules for General grade amateurs under 7000-7100 KHz band is
+	\begin{tasks}(2)
+		\task 50 watts
+		\task 100 watts
+		\task 200 watts
+		\task 400 watts
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (400 watts)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The permitted emission under new rules for Restricted grade amateurs under 144 - 146 MHz band is
+	\begin{tasks}(2)
+		\task A3E
+		\task J3E
+		\task F3E
+		\task A1A
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (F3E)
+\end{solution}
+
+\vspace{5mm}
+
+
+\begin{question}Emission designation of commercial FM broadcast transmission in India is
+	\begin{tasks}(2)
+		\task ME
+		\task J3E
+		\task F3E
+		\task R3E
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (F3E)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Conventional Morse code transmission can be represented by
+	\begin{tasks}(2)
+		\task J3E
+		\task F3E
+		\task ME
+		\task A1A
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (A1A)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The second symbol in the designation of emission represents
+	\begin{tasks}(1)
+		\task Nature of signals modulating the main earner
+		\task Type of modulation of the main carrier
+		\task Type of information to be transmitted
+		\task None of the above
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (Nature of signals modulating the main earner)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The following frequency band is permitted for general grade amateurs only
+	\begin{tasks}(2)
+		\task 1820 - 1860 KHz
+		\task 3500 - 3700 KHz
+		\task 5725 - 5840 MHz
+		\task 21000 - 21450 KHz
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (21000 - 21450 KHz)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The fee for change of location according to new rules is \spaces
+	\begin{tasks}(2)
+		\task Rs. 100
+		\task Rs. 200
+		\task Rs. 500
+		\task Rs. 1000
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (200 INR)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The standard designation for a bandwidth of 4.8 KHz is
+	\begin{tasks}(2)
+		\task 4800 Hz
+		\task 4K8
+		\task 4K80
+		\task 4800
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (4K80). See \url{https://fccid.io/Emissions-Designator/4K80F1D} for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}A bandwidth of \apostrophe{}402M\apostrophe{} represents
+	\begin{tasks}(2)
+		\task 4000 MHz
+		\task 402 MHz
+		\task 4.2 MHz
+		\task 420 MHz
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (402 MHz)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The expanded form for RST is
+	\begin{tasks}(2)
+		\task Readability, signal, tone
+		\task Readability, strength, tone
+		\task Readability, strength, testing
+		\task Readability, signal strength, tone
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (Readability, Signal Strength, Tone). See \href{https://en.wikipedia.org/wiki/R-S-T_system}{this article} and \href{https://hamradioschool.com/practical-signal-reports/}{this article}for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The phonetic for \apostrophe{}W\apostrophe{} is
+	\begin{tasks}(2)
+		\task Wine
+		\task White
+		\task Whiskey
+		\task Wheel
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Whisky)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The UHF band extends from
+	\begin{tasks}(2)
+		\task 3-30 KHz
+		\task 30-300 MHz
+		\task 3-30 MHz
+		\task 300-3000 MHz
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (300-3000 MHz)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Which of the frequency bands was not allocated for Amateur service?
+	\begin{tasks}(2)
+		\task 7000 - 7100 KHz
+		\task 7100 - 7200 KHz
+		\task 10120 - 10240 KHz
+		\task 28000 - 29700 KHz
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (10120 - 10240 KHz). See \href{https://en.wikipedia.org/wiki/List_of_amateur_radio_frequency_bands_in_India}{this article} for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+% NIAR study guide
+
+\begin{question}How many types of Amateur Radio licences are there in India?
+	\begin{tasks}(2)
+		\task Five
+		\task Two
+		\task One
+		\task Three
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Two: General Grade and Restricted Grade)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}When are third party messages permitted?
+	\begin{tasks}(1)
+		\task Always
+		\task Upon failure of normal telecommunication facilities and upon request from the Government
+		\task Never
+		\task When there are natural calamities
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B ( Upon failure of normal telecommunication facilities and upon request from the Government)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What is the minimum required speed of Morse Code exam for General Grade ASOC exam?
+	\begin{tasks}(2)
+		\task 20 WPM
+		\task 12 WPM
+		\task 8 WPM
+		\task 5 WPM
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (8 WPM)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}An Amateur Station is a station
+	\begin{tasks}(1)
+		\task in the public radio service
+		\task using radio communications for a commercial purpose
+		\task using equipment for training new radio communications operators
+		\task in the Amateur service
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (in the Amateur service)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What is the Phonetics for the alphabet \apostrophe{}R\apostrophe{}?
+	\begin{tasks}(2)
+		\task Romeo
+		\task Rome
+		\task Romania
+		\task Royal
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (Romeo)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What is the normal prefix for Restricted Grade Amateur Radio Licence in India?
+	\begin{tasks}(2)
+		\task VU2
+		\task VU3
+		\task VU5
+		\task VU9
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (VU3)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What is the Q Code for \apostrophe{}My exact location is\apostrophe{}?
+	\begin{tasks}(2)
+		\task QRL
+		\task QSL
+		\task QRA
+		\task QTH
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (QTH)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What is the meaning of QRZ?
+	\begin{tasks}(2)
+		\task What is the exact time?
+		\task What is your name?
+		\task Who is calling me?
+		\task When will we meet again?
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Who is calling me?). See \href{http://www.giangrandi.ch/electronics/radio/qcode.shtml}{Q-code list} for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Distress signal in Morse Code is:
+	\begin{tasks}(2)
+		\task XXX
+		\task SOS
+		\task TTT
+		\task V V V
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (SOS)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Pan Pan means:
+	\begin{tasks}(2)
+		\task Urgency Signal
+		\task Test Signal
+		\task Weather warning
+		\task Normal message
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (Urgency Signal)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What is meaning of \apostrophe{}CL\apostrophe{} in Morse code?
+	\begin{tasks}(2)
+		\task clearing down
+		\task cloudy
+		\task see you later
+		\task closing down
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	Answer: D (closing down). See \href{http://www.niar.org/downloads/ham-downloads/Study-Manual.pdf}{NIAR study manual} for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Which type of signal has the highest priority?
+	\begin{tasks}(2)
+		\task Urgent Signal
+		\task Test Signal
+		\task Distress Signal
+		\task Weather warning
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Distress Signal)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Morse code signal SOS is sent by a station
+	\begin{tasks}(1)
+		\task with an urgent message
+		\task in grave and imminent danger and requiring immediate assistance
+		\task making a report about a shipping hazard
+		\task sending important weather information
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (in grave and imminent danger and requiring immediate assistance)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What is the 40 Meter Band allocation for Amateur Radio License in India?
+	\begin{tasks}(2)
+		\task 14.000 to 14.350 MHz
+		\task 7.000 to 7.100 MHz
+		\task 7.000 to 7.200 MHz
+		\task 7.100 to 7.200 MHz
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (7.000 to 7.200 MHz)
+\end{solution}
+
+\vspace{5mm}
+
+
+\begin{question}How much power is permitted on HF for Restricted Grade Amateur Radio Licence in India?
+	\begin{tasks}(2)
+		\task 50 watts
+		\task 100 watts
+		\task 400 watts
+		\task 25 watts
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (50 watts)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What name in general are the Amateur Radio Satellites known as:
+	\begin{tasks}(2)
+		\task INSAT
+		\task INTELSAT
+		\task IRIDIUM
+		\task OSCAR
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (OSCAR)
+\end{solution}
+
+\vspace{5mm}
+
+
+\begin{question}
+	Abbreviation of SK means \spaces
+	\begin{tasks}(1)
+		\task end of transmission
+		\task waiting period
+		\task invitation to a particular station to transmit
+		\task end of message of communication
+	\end{tasks}
+\end{question}
+\begin{solution}
+	Answer: A (end of transmission)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Amplitude modulated single side-band full carrier, is denoted by
+	\begin{tasks}(2)
+		\task A3E
+		\task A1A
+		\task J3E
+		\task H3E
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (H3E). H: Full carrier.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Telegraphy by on-off keying of an amplitude-modulated audio frequency, double side-band, for reception by ear is denoted by
+	\begin{tasks}(2)
+		\task A2A
+		\task A1A
+		\task J3E
+		\task H3E
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (A2A)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Telegraphy by on-off keying of an amplitude modulated audio frequency for automatic reception is \spaces
+	\begin{tasks}(2)
+		\task A1A
+		\task A1B
+		\task A2A
+		\task A2B
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (A2B). See \href{https://www.qsl.net/lz1iii/html/Modulation\%20Codes.html}{this article} for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Abbreviation \apostrophe{}KA\apostrophe{} means \spaces
+	\begin{tasks}(1)
+		\task invitation to transmit
+		\task break in
+		\task starting signal
+		\task signal used to interrupt a transmission in progress
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (starting signal). See \href{https://en.wikipedia.org/wiki/Prosigns_for_Morse_code}{this article} for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+% rpc.college@gmail.com
+
+\begin{question}The Q code for \apostrophe{}Are my signals fading?\apostrophe{} is
+	\begin{tasks}(2)
+		\task QSB
+		\task QAM
+		\task QSI
+		\task QSF
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (QSB)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Phonetic alphabet for \apostrophe{}L\apostrophe{} is
+	\begin{tasks}(2)
+		\task Lilly
+		\task Lima
+		\task Luke
+		\task Lisa
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Lima)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The expanded from for \apostrophe{}AA\apostrophe{} in Morse code is
+	\begin{tasks}(2)
+		\task End of line
+		\task End of message
+		\task End of transmission
+		\task End of signal
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (End of line). See \href{http://ac6v.com/morseaids.htm}{CW OPERATING AIDS - AC6V} for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The expanded form for \apostrophe{}TU\apostrophe{} in Morse code is
+	\begin{tasks}(2)
+		\task Thank u
+		\task Thank you
+		\task Thank everyone
+		\task None of the above
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Thank you)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The renewal fee for General Grade Amateur license under new rules is
+	\begin{tasks}(2)
+		\task Rs. 1000
+		\task Rs. 2000
+		\task Rs. 100
+		\task Rs. 200
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (1000 INR for 20 years)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The fee for mobile endorsement under new rules is
+	\begin{tasks}(2)
+		\task Rs. 100
+		\task Rs. 200
+		\task Rs. 1000
+		\task Rs. 2000
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (200 INR)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Conventional Morse code transmission can be represented by
+	\begin{tasks}(2)
+		\task J3E
+		\task F3E
+		\task ME
+		\task A1A
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (A1A)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The phonetic for \apostrophe{}W\apostrophe{} is
+	\begin{tasks}(2)
+		\task Wine
+		\task White
+		\task Whiskey
+		\task Wheel
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Whisky)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}A3E emission is
+	\begin{tasks}(2)
+		\task DSB
+		\task SSB
+		\task CW
+		\task FSK
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (DSB)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What is emission for SSB, suppressed carrier :
+	\begin{tasks}(2)
+		\task A1A
+		\task F3E
+		\task J3E
+		\task A3E
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (J3E)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Amplitude modulated single side-band full carrier, is denoted by
+	\begin{tasks}(2)
+		\task A3E
+		\task A1A
+		\task J3E
+		\task H3E
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (H3E)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}An amateur station log book shall be maintained in a
+	\begin{tasks}(1)
+		\task loose leaf folder
+		\task writing pad
+		\task an exercise book serially numbered and stapled
+		\task computer printout sheets
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (an exercise book serially numbered and stapled)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}All times entered in the log book shall be in
+	\begin{tasks}(2)
+		\task local time of transmitting station
+		\task local time the receiving station
+		\task in standard time of the region
+		\task UTC
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (local time of transmitting station)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The correct phonetic alphabet for the word WIRE is
+	\begin{tasks}(1)
+		\task WILLIAM ISSAC ROBERT EDWARD
+		\task WHISKEY INDIA ROMEO ECHO
+		\task WHISKEY INDIA ROBERT EDWARD
+		\task WHISKEY INDIA ROBERT ECHO
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (WHISKEY INDIA ROMEO ECHO)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The correct group using the International Phonetic Alphabet is
+	\begin{tasks}(1)
+		\task NOVEMBER SIERRA UNIFORM VICTOR
+		\task NOVEMBER SARAH UNCLE VIOLET
+		\task NOVEMBER SIERRA UNCLE VICTOR
+		\task NOVEMBER SIERRA UNIFORM VIOLET
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (NOVEMBER SIERRA UNIFORM VICTOR)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}If a station is operated by another person who does not a valid license, other than the licencee, it will be operated in the following manner
+	\begin{tasks}(1)
+		\task By voice only under supervision of the licensee
+		\task By Morse code only under the supervision of the licencee
+		\task By voice only and no supervision required
+		\task With special permission of the Director General of telecommunications
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (With special permission of the Director General of telecommunications)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Directional CQ calls should
+	\begin{tasks}(2)
+		\task be made only on CW
+		\task not be acknowledged
+		\task not be made
+		\task be acknowledged immediately
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (be acknowledged immediately). Seems like a common-sense answer?
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}When calling an amateur station it is good procedure to
+	\begin{tasks}(1)
+		\task transmit your call sign first and the called station last
+		\task transmit the call sign of the station being called, first and the calling station next
+		\task transmit your call sign only
+		\task transmit the call sign of the station being called only
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (transmit the call sign of the station being called...)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}When using voice transmission
+	\begin{tasks}(2)
+		\task Communicate in Q code
+		\task Use plain language
+		\task Use secret cipher
+		\task Use low power on transmitter
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	Use plain language
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}For making test transmission of duration exceeding 30 seconds on bands below 52 MHz it is best to
+	\begin{tasks}(1)
+		\task Use a dummy antenna
+		\task Transmit a test signal of a series of \apostrophe{}V\apostrophe{} followed by your call sign
+		\task Make interruptions every 15 seconds
+		\task Use minimum power as far as possible
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (Use a dummy antenna)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Important entries in an amateur station log book are,
+	\begin{tasks}(1)
+		\task Call signs of stations worked, frequency bands used, power transmitted
+		\task Transmitter power used, frequency bands used and name of operator
+		\task Date, month and year, beginning and end of transmission in UTC, call signs of the station worked, frequency bands used, class of emissions
+		\task Call sign of station worked, emissions used, power of transmitter, date, month and year
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Date...)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Q code abbreviation QRS means
+	\begin{tasks}(2)
+		\task Change transmission to another frequency
+		\task Send more slowly
+		\task Stop sending
+		\task I will call you again
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Send more slowly. RS: Rate Slow)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Q code QSD means
+	\begin{tasks}(2)
+		\task Your signals are mutilated
+		\task Send faster
+		\task I am ready
+		\task I can send on my working frequency
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (Your signals are mutilated. SD: Signal Defective)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Q code for \apostrophe{}What working frequency will you use?\apostrophe{}
+	\begin{tasks}(2)
+		\task QSS?
+		\task QSL?
+		\task QSU?
+		\task QSO?
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (QSS?)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Q-code abbreviation \apostrophe{}QRG\apostrophe{} means
+	\begin{tasks}(2)
+		\task Will you tell me my exact frequency?
+		\task Does my frequency vary?
+		\task What is the tone of my frequency?
+		\task What is the readability of my signal?
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (Will you tell me my exact frequency?)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Q-code abbreviation \apostrophe{}QRL\apostrophe{} means
+	\begin{tasks}(2)
+		\task Are you troubled by static?
+		\task Are you being interfered with?
+		\task Are you busy?
+		\task Are you ready?
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Are you busy?)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Q-code abbreviation \apostrophe{}QRO\apostrophe{} means
+	\begin{tasks}(2)
+		\task Shall I send more slowly?
+		\task Shall I send faster?
+		\task Shall I decrease power?
+		\task Shall I increase power?
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (Shall I increase power? O: Overclock)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Q-code abbreviation \apostrophe{}QRT\apostrophe{} means
+	\begin{tasks}(2)
+		\task Shall I send more slowly?
+		\task Shall I stop sending?
+		\task Shall I send a series of VVVs?
+		\task Shall I change to another frequency?
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Shall I stop sending?)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}\apostrophe{}When will you call me again?\apostrophe{} is given by Q-code
+	\begin{tasks}(2)
+		\task QRX
+		\task QRV
+		\task QRU
+		\task QRZ
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (QRX)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}\apostrophe{}Your keying is defective\apostrophe{} is given by Q-code
+	\begin{tasks}(2)
+		\task QSA
+		\task QSB
+		\task QSD
+		\task QSL
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (SD: Signal Defective)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}\apostrophe{}Change to transmission on another frequency\apostrophe{} is given by Q-code
+	\begin{tasks}(2)
+		\task QSY
+		\task QSV
+		\task QSP
+		\task QSO
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (QSY)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Using voice modulation, G3E corresponds to
+	\begin{tasks}(2)
+		\task FM
+		\task PM
+		\task DSB
+		\task SSB
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (PM)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Using voice modulation, J3E corresponds to
+	\begin{tasks}(2)
+		\task FM
+		\task DSB
+		\task SSB with full carrier
+		\task SSB with suppressed carrier
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (SSB with suppressed carrier)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Amplitude modulated double-side band (DSB) is designated by
+	\begin{tasks}(2)
+		\task J3E
+		\task H3E
+		\task A3E
+		\task F3E
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (A3E)
+\end{solution}
+
+\vspace{5mm}
+
+
+% https://www.qsl.net/4/4s7vj//download/Past%20Q-papers/NoviceClass/Novice-97-Nov.pdf
+\begin{question}Abbreviation \apostrophe{}K\apostrophe{} means
+	\begin{tasks}(1)
+		\task end of transmission
+		\task end message or communication
+		\task invitation to any station to transmit
+		\task invitation to a particular station to transmit
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (invitation to any station to transmit). See \href{https://en.wikipedia.org/wiki/Prosigns_for_Morse_code}{this article} for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}In amateur transmission, it is permissible to use
+	\begin{tasks}(2)
+		\task plain languages
+		\task phonetic alphabet
+		\task Q-code
+		\task all the above are correct
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (all all the above are correct)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Which of the following need not be entered in the station log book?
+	\begin{tasks}(2)
+		\task initial calls (CQ calls)
+		\task station operated at a temporary location
+		\task call sign of calling station
+		\task transmitter power
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (transmitter power)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}At any time for a single transmission the licensee cannot transmit for a continuous period of \spaces
+	\begin{tasks}(2)
+		\task more than 3 minutes
+		\task more than 5 minutes
+		\task more than 10 minutes
+		\task more than 15 minutes
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (more than 10 minutes)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The correct phonetic alphabet for the word \apostrophe{}NICE\apostrophe{} is
+	\begin{tasks}(1)
+		\task NELLY, INDIA, CHARLIE, ECHO
+		\task NOVEMBER, ISACK, CHARLLI, ECHO
+		\task NOVEMBER, INDIA, CHARLIE, EDWARD
+		\task NOVEMBER, INDIA, CHARLIE, ECHO
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (NOVEMBER, INDIA, CHARLIE, ECHO\textsl{})
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The correct group using International Phonetic Alphabet is
+	\begin{tasks}(2)
+		\task KILO, LIMA, MIKE, ROMEO
+		\task KING, LIONEL, MIKE, ROMEO
+		\task KILO, LIMA, MARY, ROBERT
+		\task KING, LIONEL, MARY, ROBERT
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (KILO, LIMA, MIKE, ROMEO)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}For safety reason all exposed metal work in an amateur station should be
+	\begin{tasks}(1)
+		\task connected to mains neutral
+		\task free of earth connections
+		\task left completely floating
+		\task connected to a good RF earth
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (connected to a good RF earth)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}When wearing headphones it is not advisable to
+	\begin{tasks}(1)
+		\task be calling CQ
+		\task have one's hands inside live equipment
+		\task be switching off
+		\task have rubber gloves on
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (have one's hands inside live equipment)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}If a station asks \apostrophe{}please QSY\apostrophe{} this means
+	\begin{tasks}(2)
+		\task there is fading
+		\task change frequency
+		\task stop transmitting
+		\task reply in Morse
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (change frequency)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The only general call allowed from an amateur station is
+	\begin{tasks}(2)
+		\task a news bulletin
+		\task a CQ call
+		\task a third party call
+		\task on VHF
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (CQ call)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}As well as amateur frequency transmission, the licence allows reception of
+	\begin{tasks}(2)
+		\task diplomatic messages
+		\task standard frequency transmission
+		\task news agency transmissions
+		\task police transmissions
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (standard frequency transmission)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Which of the following occurrences need not be entered into the station log?
+	\begin{tasks}(1)
+		\task Test for interference
+		\task Station used by licenced operator other than licence
+		\task Station operated at temporary location
+		\task Station temporarily dismantled
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (Station temporarily dismantled)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Having established contact on a calling frequency it is good practice to
+	\begin{tasks}(1)
+		\task stay on the same frequency
+		\task move to another frequency
+		\task invite others to join on the same frequency
+		\task be objectionable to all other callers
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (move to another frequency)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Q-code for \apostrophe{}standby\apostrophe{} is
+	\begin{tasks}(2)
+		\task QRN
+		\task QRM
+		\task QRS
+		\task QRX
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (QRX)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}It is good safety practice to
+	\begin{tasks}(1)
+		\task use plastic piping for earthing
+		\task unearth all metal cases
+		\task have no master switch
+		\task supply all mains power via master switch
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (supply all mains power via master switch)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}When calling a station it is good practice to
+	\begin{tasks}(1)
+		\task put your callsign first
+		\task use your callsign only
+		\task put the callsign of the station being called first
+		\task use the callsign of the other station
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (put the callsign of the station being called first)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}In RST code \apostrophe{}S\apostrophe{} is for
+	\begin{tasks}(2)
+		\task safety
+		\task signal strength
+		\task signal direction
+		\task single station
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (signal strength)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}To prevent annoying other users on a band a transmitter should always be tuned initially
+	\begin{tasks}(1)
+		\task on a harmonic outside the band
+		\task into an antenna
+		\task into a dummy load
+		\task into a dipole
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (into a dummy load)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Which of the following represents a valid log?
+	\begin{tasks}(1)
+		\task a loose-leaf book
+		\task a none loose-leaf book
+		\task a magnetic disk containing propagation and RTTY programmes
+		\task a magnetic tape which also includes games programmes
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (a none loose-leaf book)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}A log must be kept for
+	\begin{tasks}(1)
+		\task mobile operation
+		\task pedestrian operation
+		\task main station address and all temporary locations
+		\task main station address only
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (main station address and all temporary locations)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Q-code abbreviation \apostrophe{}QRG\apostrophe{} means
+	\begin{tasks}(2)
+		\task What is the correct time?
+		\task Will you tell me my exact frequency
+		\task Shall I stop sending?
+		\task What is your location?
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Will you tell me my exact frequency)\textsl{}
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Q-code abbreviation \apostrophe{}QSY\apostrophe{} means
+	\begin{tasks}(1)
+		\task Shall I send more slowly?
+		\task Shall I change to another frequency?
+		\task Shall I decrease power?
+		\task Shall I increase power?
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Shall I change to another frequency?)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}\apostrophe{}Are you troubled by static?\apostrophe{} is given by Q-code
+	\begin{tasks}(2)
+		\task QRN
+		\task QRO
+		\task QRP
+		\task QRQ
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (QRN)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}\apostrophe{}Can you give me acknowledgment of receipt\apostrophe{} is given by Q-code
+	\begin{tasks}(2)
+		\task QSB
+		\task QSD
+		\task QSL
+		\task QSP
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (QSL). HAMs exchange QSL cards.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+% ASOC Part 2.doc
+
+\begin{question}You must keep the following document at your amateur station
+	\begin{tasks}(1)
+		\task Your General Amateur Operator Certificate of Competency
+		\task A copy of the Rules and Regulations for the Amateur Service
+		\task A copy of the Radio Amateurs Handbook for instant reference
+		\task A chart showing the amateur radio bands
+		\task None
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (Your General Amateur Operator Certificate of Competency AKA Your Amateur Operator Licence).
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}If you contact another station and your signal is strong and perfectly readable , you should
+	\begin{tasks}(2)
+		\task Turn on your speech processor
+		\task Reduce your SWR
+		\task Not may take any changes, otherwise you may lose contact
+		\task Reduce your transmitter power output to the minimum needed to maintain contact
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (Reduce your transmitter power output to the minimum needed to maintain contact)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}You are adjusting an antenna matching unit using an SWR bridge. You should adjust for
+	\begin{tasks}(2)
+		\task Maximum reflected power
+		\task Equal reflected and transmitted power
+		\task Minimum reflected power
+		\task Minimum transmitted power
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Minimum reflected power)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The message \apostrophe{}PAN PAN VU2HYD DE VU2MON\apostrophe{} is of type
+	\begin{tasks}(2)
+		\task Urgency signal
+		\task Distress signal
+		\task Safely signal
+		\task None of the above
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (Urgency signal)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The frequency of bandwidth of an emission \apostrophe{}100HA1A\apostrophe{} is
+	\begin{tasks}(2)
+		\task 100 KHz
+		\task 0.1 KHz
+		\task 10 KHz
+		\task 1 KHz
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (0.1 KHz). 100 Hz.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}If you hear distress traffic and are unable to render assistance you should
+	\begin{tasks}(1)
+		\task Maintain watch until you are certain that assistance is forthcoming
+		\task Enter the details in the log book and take no further action
+		\task Take no action
+		\task Tell all other stations to cease transmitting
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (Maintain watch until you are certain that assistance is forthcoming)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}An emission that represents a signal which contains a single channel with analog signal uses Amplitude Modulated telegraphy for aural reception without the use of modulating sub-carrier is
+	\begin{tasks}(2)
+		\task A1A
+		\task A2A
+		\task H1A
+		\task R1A
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (A1A)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The phonetic used for the digit 7 is
+	\begin{tasks}(2)
+		\task Sekte Seven
+		\task Soxi Seven
+		\task Seven
+		\task Sette Seven
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (Sette Seven)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Emissions shall be designated according to their
+	\begin{tasks}(1)
+		\task Power output and radiating direction
+		\task Necessary bandwidth and classification
+		\task Necessary bandwidth and power output
+		\task Power output and classification
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Necessary bandwidth and classification)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}To avoid harmful interference, the radiation in and reception from unnecessary directions can be minimized by using
+	\begin{tasks}(2)
+		\task Appropriate class of emission
+		\task Better selectivity
+		\task Directional antennas
+		\task Better location for Transmitting and Receiving stations
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Directional antennas)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Which of the following statements is NOT correct?
+	\begin{tasks}(1)
+		\task No person shall decode an encrypted subscription programming signal without permission of the lawful distributor
+		\task No person shall without lawful excuse, interfere with or obstruct any radio communication
+		\task A person may decrypt/decode an encrypted subscription programming signal, and retransmit it to the public
+		\task No person shall send, transmit, or cause to be transmitted, any false or fraudulent distress signal
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (A person may decrypt/decode an encrypted subscription programming signal, and retransmit it to the public)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The call sign of an Amateur station must be sent
+	\begin{tasks}(1)
+		\task Every minute
+		\task Every 15 min
+		\task At the beginning and end of each exchange of communications, and at least every 10 min, while in communication
+		\task Once after initial contact
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (At the beginning and end of each exchange of communications, and at least every 10 min, while in communication)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}At what point in your station is transceiver power measured
+	\begin{tasks}(1)
+		\task At the final amplifier input terminals inside the transmitter or amplifier
+		\task At the antenna terminals of the transmitter or amplifier
+		\task On the antenna itself, after the feed line
+		\task At the power supply terminals inside the transmitter or amplifier
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (At the antenna terminals of the transmitter or amplifier)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}To make your call sign better understood when using voice transmissions. What should you do?
+	\begin{tasks}(1)
+		\task Use any words which start with the same letters as your call sign for each letter of your call
+		\task Talk louder
+		\task Turn up your microphone gain
+		\task Use Standard International Phonetics for each letter of your call sign
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (Use Standard International Phonetics for each letter of your call sign)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What is simplex operation?
+	\begin{tasks}(1)
+		\task Transmitting and receiving over a wide area
+		\task Transmitting on one frequency and receiving on another
+		\task Transmitting one-way communications
+		\task Transmitting and receiving on the same frequency
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (Transmitting and receiving on the same frequency)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The third symbol in class of an Emission signifies about
+	\begin{tasks}(1)
+		\task Nature of signals modulating the main carrier
+		\task Type of modulation of the main carrier
+		\task Type of information to be transmitted
+		\task Nature of multiplexing the signals
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Type of information to be transmitted)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The transmission of characters \apostrophe{}VVV VVV VVV VU2MON\apostrophe{} denotes the following type of signal
+	\begin{tasks}(2)
+		\task Safety
+		\task Distress
+		\task Urgency
+		\task Test
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (Test)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The phonetic used for punctuation \apostrophe{}.\apostrophe{} is
+	\begin{tasks}(2)
+		\task Full stop
+		\task Stop
+		\task Dot
+		\task Decimal
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (STOP). See \href{https://en.wikipedia.org/wiki/Morse_code_mnemonics}{this article} and \href{https://en.wikipedia.org/wiki/NATO_phonetic_alphabet}{this article}for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Frequency range that is authorised to Amateurs in UHF is
+	\begin{tasks}(2)
+		\task 423 - 428 MHz
+		\task 434 - 438 MHz
+		\task 443 - 448 MHz
+		\task 433 - 438 MHz
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (434 - 438 MHz)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Emission \apostrophe{}7M50C3F\apostrophe{} is used for
+	\begin{tasks}(2)
+		\task FM Broadcast
+		\task AM Broadcast
+		\task Television Broadcast
+		\task Facsimile transmission
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Television Broadcast). In C3F, \apostrophe{}F\apostrophe{} implies video information.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The space between two characters in a Morse code transmission is 1 msec. Then what would be the time required to send the dash is \spaces
+	\begin{tasks}(2)
+		\task 5 msec
+		\task 10 msec
+		\task 3 msec
+		\task 1 msec
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (1 msec).The letters of a word are separated by a space equal to three dots (one dash), and the words are separated by a space equal to seven dots. See \href{https://en.wikipedia.org/wiki/Morse_code}{this article} for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Identification of a station primarily can be done by
+	\begin{tasks}(2)
+		\task Preamble
+		\task Call sign
+		\task Frequency
+		\task RST
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Call sign)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Message received in Morse Code is \apostrophe{}MAYDAY VU2XX DE VU2YY RRR MAYDAY\apostrophe{}. The person in distress is \spaces
+	\begin{tasks}(2)
+		\task VU2YY
+		\task VU2XX
+		\task RRR
+		\task None of the above
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (VU2XX). This is an acknowledgment of a distress signal by the receiving station (VU2YY).
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}What should be the type station of an Amateur from the message received in voice is \apostrophe{}THIS IS VU2ZZ MO HYDERABAD\apostrophe{}
+	\begin{tasks}(2)
+		\task Fixed station
+		\task Mobile station
+		\task Aeronautical station
+		\task Maritime station
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Mobile station)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The character that represents the Morse code \tikzmorse{-}\hspace{-0.25em}is
+	\begin{tasks}(2)
+		\task Hyphen
+		\task Question mark
+		\task Full stop
+		\task Comma
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (Hyphen)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The class of emission to be employed by a station should be such as to achieve
+	\begin{tasks}(2)
+		\task Minimum interference
+		\task Efficient spectrum
+		\task Both A \& B
+		\task None of the above
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Both A \& B)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The type of signal / message that is sent regarding the safety of a ship, aircraft, vehicles, persons is
+	\begin{tasks}(2)
+		\task Safety
+		\task Urgency
+		\task Test
+		\task Distress
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (Urgency Signal). According to \apostrophe{}NIAR Study Manual\apostrophe{}. Also, \apostrophe{}Safety Signal\apostrophe{} is usually sent for giving weather warnings.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The message in voice \apostrophe{}THIS IS VU2MON CALLING VU2HYD I HAVE NOTHING FOR YOU\apostrophe{} can be sent on Morse as follows
+	\begin{tasks}(2)
+		\task VU2MON DE VU2HYD QRL
+		\task VU2HYD DE VU2MON QRU
+		\task VU2HYD DE VU2MON QRL
+		\task VU2MON DE VU2HYD QRU
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	B (VU2HYD DE VU2MON QRU)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The Emission stands for a station to transmit signals of frequency modulated analog voice transmission by single channel with necessary bandwidth of 3 KHz is
+	\begin{tasks}(2)
+		\task F3E3K
+		\task 3K00F2E
+		\task 3K00F3E
+		\task F2E3K00
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (3K00F3E)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Starting signal for the transmission in Morse code is
+	\begin{tasks}(2)
+		\task CL
+		\task AR
+		\task VA
+		\task CT
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (CT). See \href{https://en.wikipedia.org/wiki/Prosigns_for_Morse_code}{this article} for details.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}The holder of an Amateur Radio Operator Certificate with Basic Qualification is authorized to operate the following stations
+	\begin{tasks}(1)
+		\task A station authorized in the aeronautical service
+		\task A station authorized in the maritime service
+		\task Any authorized station except stations authorized in the amateur , aeronautical or maritime services
+		\task A station authorized in the amateur radio service
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (A station authorized in the amateur radio service)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}A radio amateur with General Category Licence may install an amateur station for another person
+	\begin{tasks}(1)
+		\task Only if the other person is the holder of a valid Amateur Radio Operator
+		\task Certificate only if the final power input does not exceed 100 watts
+		\task Only if the station is for use on one of the VHF bands
+		\task Only if the DC power input to the final stage does not exceed 200 watts
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	A (Only if the other person is the holder of a valid Amateur Radio Operator)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}An Amateur station may be used to communicate with
+	\begin{tasks}(1)
+		\task Any stations which are identified for special contests
+		\task Armed forces stations during special contests and training exercises
+		\task Similarly licensed stations
+		\task Any station transmitting in the amateur bands
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	C (Similarly licensed stations)
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}Which of the following CANNOT be discussed on an amateur club net?
+	\begin{tasks}(2)
+		\task Recreation planning
+		\task Code practice planning
+		\task Emergency planning
+		\task Business planning
+	\end{tasks}
+\end{question}
+
+\begin{solution}
+	D (Business planning)
+\end{solution}
+
+\vspace{5mm}
+
+%%%
+
+\begin{question}
+	What is simplex operation?
+\end{question}
+\begin{solution}
+	Transmitting and receiving on the same frequency without a repeater being involved.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}
+	What is the meaning of QRM?
+\end{question}
+\begin{solution}
+	I am being interfered with.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}
+	What is the meaning of \apostrophe{}Roger\apostrophe{}?
+\end{question}
+\begin{solution}
+	Received fully
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}
+	Signal Strength \apostrophe{}9\apostrophe{} means \spaces
+\end{question}
+\begin{solution}
+	Strong signals
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}
+	What is the minimum age for foreign nations to apply for reciprocal license?
+\end{question}
+\begin{solution}
+	18 years
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}
+	Amateur Radio license can be renewed for \spaces
+\end{question}
+\begin{solution}
+	20 years or Life long.
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}
+	The fee for change of address is \spaces
+\end{question}
+\begin{solution}
+	200 INR
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}
+	Mobile permission is issued for \spaces
+\end{question}
+\begin{solution}
+	90 days
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}
+	A slang term often used for an amateur station\apostrophe{}s location is \spaces
+\end{question}
+\begin{solution}
+	Shack
+\end{solution}
+
+\vspace{5mm}
+
+
+
+\begin{question}
+	The Q-code for \apostrophe{}Does my frequency vary\apostrophe{} is \spaces
+\end{question}
+\begin{solution}
+	QRH?
+\end{solution}
+
+
+
+
+\end{document}
